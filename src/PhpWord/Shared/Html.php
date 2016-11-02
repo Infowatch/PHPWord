@@ -293,6 +293,10 @@ class Html
      */
     protected static function parseSpan($node, &$styles)
     {
+        if ($node->nodeName == '#text' && $node->textContent == $node->parentNode->textContent) {
+            return null;
+        }
+
         self::parseInlineStyle($node, $styles['font']);
     }
 
