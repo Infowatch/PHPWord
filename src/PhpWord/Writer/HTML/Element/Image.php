@@ -37,15 +37,28 @@ class Image extends Text
         if (!$this->element instanceof ImageElement) {
             return '';
         }
+        /** @var \PhpOffice\PhpWord\Writer\HTML $parentWriter Type hint */
+        $parentWriter = $this->parentWriter;
         $content = '';
-        $imageData = $this->element->getImageStringData(true);
-        if ($imageData !== null) {
+        if (!$parentWriter->isPdf()) {
+            $imageData = $this->element->getImageStringData(true);
+            if ($imageData !== null) {
+                $styleWriter = new ImageStyleWriter($this->element->getStyle());
+                $style = $styleWriter->write();
+                $imageData = 'data:' . $this->element->getImageType() . ';base64,' . $imageData;
+
+                $content .= $this->writeOpening();
+                $content .= "<img border=\"0\" style=\"{$style}\" src=\"{$imageData}\"/>";
+                $content .= $this->writeClosing();
+                $content .= $this->writeOpening();
+                $content .= "<img border=\"0\" style=\"{$style}\" src=\"{$imageData}\"/>";
+                $content .= $this->writeClosing();
+            }
+        } else {
             $styleWriter = new ImageStyleWriter($this->element->getStyle());
             $style = $styleWriter->write();
-            $imageData = 'data:' . $this->element->getImageType() . ';base64,' . $imageData;
-
             $content .= $this->writeOpening();
-            $content .= "<img border=\"0\" style=\"{$style}\" src=\"{$imageData}\"/>";
+            $content .= "<img border=\"0\" style=\"{$style}\" src=\"{$this->element->getSource()}\"/>";
             $content .= $this->writeClosing();
         }
 
