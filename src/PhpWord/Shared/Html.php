@@ -232,9 +232,9 @@ class Html
     private static function parseText($node, $element, &$styles)
     {
         // every skip text
-        /*if ($node->nodeName == '#text' && $node->textContent == $node->parentNode->textContent) {
+        if ($node->nodeName == '#text' && $node->textContent == $node->parentNode->textContent) {
             return null;
-        }*/
+        }
 
         $styles['font'] = self::parseInlineStyle($node, $styles['font']);
 
