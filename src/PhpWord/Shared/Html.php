@@ -293,7 +293,8 @@ class Html
      */
     protected static function parseSpan($node, &$styles)
     {
-        if ($node->nodeName == '#text' && $node->textContent == $node->parentNode->textContent) {
+        if ($node->textContent == $node->parentNode->textContent
+            && $node->nodeName == '#text' && $node->parentNode->nodeName != 'body') {
             return null;
         }
 
