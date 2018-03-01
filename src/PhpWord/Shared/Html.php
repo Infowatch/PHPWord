@@ -231,8 +231,9 @@ class Html
      */
     private static function parseText($node, $element, &$styles)
     {
-        // every skip text
-        if ($node->nodeName == '#text' && $node->textContent == $node->parentNode->textContent && count($node->parentNode->childNodes) != 1) {
+        // skip duplicate text for lonely tag
+        if ($node->textContent == $node->parentNode->textContent
+            && $node->nodeName == '#text' && $node->parentNode->nodeName != 'body') {
             return null;
         }
 
