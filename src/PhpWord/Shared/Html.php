@@ -54,6 +54,7 @@ class Html
         if (false === $fullHTML) {
             $html = '<body>' . $html . '</body>';
         }
+        $html = str_replace('< ', '&lt; ', $html);
 
         // Load DOM
         $dom = new \DOMDocument();
