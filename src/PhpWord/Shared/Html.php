@@ -70,6 +70,7 @@ class Html
         if (false === $fullHTML) {
             $html = '<body>' . $html . '</body>';
         }
+        $html = str_replace('< ', '&lt; ', $html);
 
         // Load DOM
         $orignalLibEntityLoader = libxml_disable_entity_loader(true);
