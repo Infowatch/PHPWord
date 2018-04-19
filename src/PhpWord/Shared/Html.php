@@ -54,12 +54,13 @@ class Html
         if (false === $fullHTML) {
             $html = '<body>' . $html . '</body>';
         }
-        $html = str_replace('< ', '&lt; ', $html);
 
         // Load DOM
         $dom = new \DOMDocument();
         $dom->preserveWhiteSpace = true;
-        $dom->loadXML($html);
+        $html = mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8');
+        $dom->loadHTML($html);
+
         $node = $dom->getElementsByTagName('body');
 
         self::parseNode($node->item(0), $element);
@@ -110,7 +111,7 @@ class Html
 
         // Node mapping table
         $nodes = array(
-                              // $method        $node   $element    $styles     $data   $argument1      $argument2
+            // $method        $node   $element    $styles     $data   $argument1      $argument2
             'p'         => array('Paragraph',   $node,  $element,   $styles,    null,   null,           null),
             'h1'        => array('Heading',     null,   $element,   $styles,    null,   'Heading1',     null),
             'h2'        => array('Heading',     null,   $element,   $styles,    null,   'Heading2',     null),
@@ -177,7 +178,7 @@ class Html
     {
         if ('li' != $node->nodeName) {
             $cNodes = $node->childNodes;
-            if (count($cNodes) > 0) {
+            if ($node->childNodes && $node->childNodes->length > 0) {
                 foreach ($cNodes as $cNode) {
                     if ($element instanceof AbstractContainer) {
                         self::parseNode($cNode, $element, $styles, $data);
@@ -331,7 +332,7 @@ class Html
     private static function parseListItem($node, $element, &$styles, $data)
     {
         $cNodes = $node->childNodes;
-        if (count($cNodes) > 0) {
+        if ($node->childNodes && $node->childNodes->length > 0) {
             $text = '';
             foreach ($cNodes as $cNode) {
                 if ($cNode->nodeName == '#text') {
