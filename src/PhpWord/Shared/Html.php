@@ -70,11 +70,11 @@ class Html
         if (false === $fullHTML) {
             $html = '<body>' . $html . '</body>';
         }
-        $html = str_replace('< ', '&lt; ', $html);
 
         // Load DOM
         $orignalLibEntityLoader = libxml_disable_entity_loader(true);
         $dom = new \DOMDocument();
+        $html = mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8');
         $dom->preserveWhiteSpace = $preserveWhiteSpace;
         $dom->loadXML($html);
         self::$xpath = new \DOMXPath($dom);
