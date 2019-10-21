@@ -43,6 +43,7 @@ class Font extends AbstractStyle
         $size = $style->getSize();
         $color = $style->getColor();
         $fgColor = $style->getFgColor();
+        $bgColor = $style->getBgColor();
         $underline = $style->getUnderline() != FontStyle::UNDERLINE_NONE;
         $lineThrough = $style->isStrikethrough() || $style->isDoubleStrikethrough();
 
@@ -50,6 +51,7 @@ class Font extends AbstractStyle
         $css['font-size'] = $this->getValueIf($size !== null, "{$size}pt");
         $css['color'] = $this->getValueIf($color !== null, "#{$color}");
         $css['background'] = $this->getValueIf($fgColor != '', $fgColor);
+        $css['background-color'] = $this->getValueIf($bgColor != '', '#'.$bgColor);
         $css['font-weight'] = $this->getValueIf($style->isBold(), 'bold');
         $css['font-style'] = $this->getValueIf($style->isItalic(), 'italic');
         $css['vertical-align'] = $this->getValueIf($style->isSuperScript(), 'italic');
