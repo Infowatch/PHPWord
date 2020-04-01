@@ -75,6 +75,13 @@ class Html
         $orignalLibEntityLoader = libxml_disable_entity_loader(true);
         $dom = new \DOMDocument();
         $html = mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8');
+        // replace special chars symbol for xml
+        $html = preg_replace_callback(
+            '/&([\w]+);/',
+            function ($entity) {
+                return '&#'.ord(html_entity_decode($entity[0])).';';
+            },
+            $html);
         $dom->preserveWhiteSpace = $preserveWhiteSpace;
         $dom->loadXML($html);
         self::$xpath = new \DOMXPath($dom);
