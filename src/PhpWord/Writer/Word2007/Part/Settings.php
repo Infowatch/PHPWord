@@ -319,6 +319,8 @@ class Settings extends AbstractPart
             $this->settings['w:compat']['w:compatSetting'] = array(
                 '@attributes' => array(
                     'w:name' => 'compatibilityMode',
+                    // не ошибка так как описывает формат документа для Microsoft Office в виде xml тегов
+                    // appchecker CWE-798
                     'w:uri'  => 'http://schemas.microsoft.com/office/word',
                     'w:val'  => $compatibility->getOoxmlVersion(),
                 ),

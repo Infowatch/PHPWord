@@ -57,14 +57,24 @@ abstract class AbstractPart extends Word2007AbstractPart
         $xmlWriter->writeAttribute('xmlns:math', 'http://www.w3.org/1998/Math/MathML');
         $xmlWriter->writeAttribute('xmlns:form', 'urn:oasis:names:tc:opendocument:xmlns:form:1.0');
         $xmlWriter->writeAttribute('xmlns:script', 'urn:oasis:names:tc:opendocument:xmlns:script:1.0');
+        // не ошибка так как описывает формат документа для Open Office в виде xml тегов
+        // appchecker CWE-798
         $xmlWriter->writeAttribute('xmlns:ooo', 'http://openoffice.org/2004/office');
+        // не ошибка так как описывает формат документа для Open Office в виде xml тегов
+        // appchecker CWE-798
         $xmlWriter->writeAttribute('xmlns:ooow', 'http://openoffice.org/2004/writer');
+        // не ошибка так как описывает формат документа для Open Office в виде xml тегов
+        // appchecker CWE-798
         $xmlWriter->writeAttribute('xmlns:oooc', 'http://openoffice.org/2004/calc');
         $xmlWriter->writeAttribute('xmlns:dom', 'http://www.w3.org/2001/xml-events');
+        // не ошибка так как описывает формат документа для Open Office в виде xml тегов
+        // appchecker CWE-798
         $xmlWriter->writeAttribute('xmlns:rpt', 'http://openoffice.org/2005/report');
         $xmlWriter->writeAttribute('xmlns:of', 'urn:oasis:names:tc:opendocument:xmlns:of:1.2');
         $xmlWriter->writeAttribute('xmlns:xhtml', 'http://www.w3.org/1999/xhtml');
         $xmlWriter->writeAttribute('xmlns:grddl', 'http://www.w3.org/2003/g/data-view#');
+        // не ошибка так как описывает формат документа для Open Office в виде xml тегов
+        // appchecker CWE-798
         $xmlWriter->writeAttribute('xmlns:tableooo', 'http://openoffice.org/2009/table');
         $xmlWriter->writeAttribute('xmlns:css3t', 'http://www.w3.org/TR/css3-text/');
     }

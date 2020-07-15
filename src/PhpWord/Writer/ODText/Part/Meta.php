@@ -44,6 +44,8 @@ class Meta extends AbstractPart
         $xmlWriter->writeAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
         $xmlWriter->writeAttribute('xmlns:dc', 'http://purl.org/dc/elements/1.1/');
         $xmlWriter->writeAttribute('xmlns:meta', 'urn:oasis:names:tc:opendocument:xmlns:meta:1.0');
+        // не ошибка так как описывает формат документа для Open Office в виде xml тегов
+        // appchecker CWE-798
         $xmlWriter->writeAttribute('xmlns:ooo', 'http://openoffice.org/2004/office');
         $xmlWriter->writeAttribute('xmlns:grddl', 'http://www.w3.org/2003/g/data-view#');
         $xmlWriter->startElement('office:meta');
