@@ -82,6 +82,8 @@ class Footnotes extends AbstractPart
         $xmlWriter->writeAttribute('xmlns:wp', $drawingSchema);
         $xmlWriter->writeAttribute('xmlns:w10', 'urn:schemas-microsoft-com:office:word');
         $xmlWriter->writeAttribute('xmlns:w', 'http://schemas.openxmlformats.org/wordprocessingml/2006/main');
+        // не ошибка так как описывает формат документа для Microsoft Office в виде xml тегов
+        // appchecker CWE-798
         $xmlWriter->writeAttribute('xmlns:wne', 'http://schemas.microsoft.com/office/word/2006/wordml');
 
         // Separator and continuation separator
